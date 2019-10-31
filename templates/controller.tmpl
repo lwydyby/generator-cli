@@ -1,0 +1,53 @@
+{{$Data := .Data}}
+package {{$Data.Package}}.controller;
+
+
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * @author lwydyby
+ */
+@RestController
+@RequestMapping("/{{$Data.Name|camelCase|lowerFirst}}")
+public class {{$Data.Name|upperFirst}}Controller {
+
+    @Autowired
+    {{$Data.Name|upperFirst}}Service {{$Data.Name|camelCase|lowerFirst}}Service;
+
+
+    @GetMapping("/findPage")
+    @RequiresAuthentication
+    public ResponseBean findPage({{$Data.Name|upperFirst}}Query {{$Data.Name|camelCase|lowerFirst}}Query){
+
+        return new ResponseBean({{$Data.Name|camelCase|lowerFirst}}Service.findPage({{$Data.Name|camelCase|lowerFirst}}Query));
+    }
+
+    @PostMapping("create{{$Data.Name|upperFirst}}")
+    @RequiresAuthentication
+    public ResponseBean create{{$Data.Name|upperFirst}}(@RequestBody {{$Data.Name|upperFirst}} {{$Data.Name|camelCase|lowerFirst}}){
+        {{$Data.Name|camelCase|lowerFirst}}Service.create{{$Data.Name|upperFirst}}({{$Data.Name|camelCase|lowerFirst}});
+        return new ResponseBean("创建成功");
+    }
+
+
+    @PutMapping("modify{{$Data.Name|upperFirst}}")
+    @RequiresAuthentication
+    public ResponseBean modify{{$Data.Name|upperFirst}}(@RequestBody {{$Data.Name|upperFirst}} {{$Data.Name|camelCase|lowerFirst}}){
+        {{$Data.Name|camelCase|lowerFirst}}Service.modify{{$Data.Name|upperFirst}}({{$Data.Name|camelCase|lowerFirst}});
+        return new ResponseBean("创建成功");
+    }
+
+    @DeleteMapping("delete{{$Data.Name|upperFirst}}")
+    @RequiresAuthentication
+    public ResponseBean delete{{$Data.Name|upperFirst}}(Long id){
+        {{$Data.Name|camelCase|lowerFirst}}Service.delete{{$Data.Name|upperFirst}}(id);
+        return new ResponseBean("删除成功");
+    }
+
+
+}

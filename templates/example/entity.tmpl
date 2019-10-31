@@ -1,0 +1,48 @@
+{{$Data := .Data}}
+
+package {{$Data.Package}}.entity;
+
+
+import java.io.Serializable;
+import lombok.*;
+
+
+/**
+ * @author lwydyby
+ */
+@Data
+{{if eq $Data.Format "mongo"}}
+@Document
+{{else if eq .Type "mysql"}}
+@Table(name = "{{$Data.Name|lower}}")
+@Entity
+{{end}}
+public class {{$Data.Name|upperFirst}} implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+
+    /***/
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
+
+    {{ range $Data.TableColumn }}
+     /**
+         * {{.Label}}
+         */
+        @Column(name = "{{.ColumnName}}")
+        private {{.Type}} {{.ColumnName|camelCase|lowerFirst}};
+
+    {{- end }}
+
+    {{ range $Data.ExtraColumn }}
+         /**
+             * {{.Label}}
+             */
+            @Column(name = "{{.ColumnName}}")
+            private {{.Type}} {{.ColumnName|camelCase|lowerFirst}};
+
+         {{- end }}
+
+
+}

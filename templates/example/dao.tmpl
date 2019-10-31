@@ -1,0 +1,19 @@
+{{$Data := .Data}}
+
+package {{$Data.Package}}.entity;
+
+import {{$Data.Package}}.entity.{{$Data.Name|upperFirst}};
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
+
+
+
+{{if eq $Data.Format "mongo"}}
+public interface {{$Data.Name|upperFirst}}Repository extends MongoRepository<{{$Data.Name|upperFirst}}, String> {
+{{else if eq .Type "mysql"}}
+@Repository
+public interface {{$Data.Name|upperFirst}}Repository extends JpaRepository<{{$Data.Name|upperFirst}},String>, JpaSpecificationExecutor<{{$Data.Name|upperFirst}}> {
+{{end}}
+
+}

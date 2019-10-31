@@ -1,0 +1,24 @@
+template:
+  format: Go
+template_files:
+  web:
+    file_path: web.tmpl
+    output_file_naming: index.vue
+  dao:
+    file_path: dao.tmpl
+    output_file_naming: userRepository.java
+  api:
+    file_path: api.tmpl
+    output_file_naming: user.js
+  service:
+    file_path: service.tmpl
+    output_file_naming: UserService.java
+  controller:
+    file_path: controller.tmpl
+    output_file_naming: UserController.java
+  entity:
+    file_path: entity.tmpl
+    output_file_naming: User.java
+  search:
+    file_path: search.tmpl
+    output_file_naming: UserSearch.java

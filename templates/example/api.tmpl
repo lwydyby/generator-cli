@@ -1,0 +1,38 @@
+{{$Data := .Data}}
+
+import request from '@/plugin/axios'
+import Qs from 'qs'
+
+
+export function findPage(params) {
+  return request({
+    url: '/{{$Data.Name|lower}}/findPage',
+    method: 'get',
+    params
+  })
+}
+
+export function create{{$Data.Name}}(params) {
+  return request({
+    url: '/{{$Data.Name|lower}}/create{{$Data.Name}}',
+    method: 'post',
+    data:params
+
+  })
+}
+
+export function modify{{$Data.Name}}(params) {
+  return request({
+    url: '/{{$Data.Name|lower}}/modify{{$Data.Name}}',
+    method: 'put',
+    data: params
+  })
+}
+
+
+export function delete{{$Data.Name}}(params) {
+  return request({
+    url: '/{{$Data.Name|lower}}/delete{{$Data.Name}}?id='+params,
+    method: 'delete'
+  })
+}

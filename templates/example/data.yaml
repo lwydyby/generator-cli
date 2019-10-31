@@ -1,0 +1,33 @@
+data:
+  format: mongo
+  # 提供搜索功能的字段
+  search_column:
+    - prop: "name"
+      label: "名称"
+      type: "input"
+    - prop: "type"
+      label: "类型"
+      type: "select"
+  #创建时所需的字段
+  create_column:
+    - prop:  "name"
+      type: "String"
+      label: "名称"
+  #列表展示的字段
+  table_column:
+    - prop: "name"
+      label: "名称"
+      type: "String"
+      #数据库中的名称
+      column_name: "name"
+  #除列表展示外数据库要保存的字段
+  extra_column:
+    - prop: "createDate"
+      type: "Date"
+      label: "创建日期"
+      column_name: "create_date"
+  #按钮及表单名
+  button_name: "用户"
+  #生成的英文名
+  name: "User"
+  package: "com.example"

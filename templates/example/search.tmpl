@@ -1,0 +1,22 @@
+{{$Data := .Data}}
+
+package {{$Data.Package}}.domain;
+
+
+import lombok.*;
+
+/**
+ * @author lwydyby
+ */
+@Data
+public class {{$Data.Name|upperFirst}}Query extends BaseQuery {
+
+ {{ range $Data.SearchColumn }}
+     /**
+         * {{.Label}}
+         */
+        private String {{.Prop|camelCase|lowerFirst}};
+
+    {{- end }}
+
+}

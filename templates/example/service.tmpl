@@ -1,0 +1,67 @@
+{{$Data := .Data}}
+
+package {{$Data.Package}}.service;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+/**
+ * @author liwei
+ */
+@Service
+public class {{$Data.Name|upperFirst}}Service {
+    @Autowired
+    {{$Data.Name|upperFirst}}Repository {{$Data.Name|camelCase|lowerFirst}}Repository;
+
+    public Page<{{$Data.Name|upperFirst}}> findPage({{$Data.Name|upperFirst}}Query {{$Data.Name|camelCase|lowerFirst}}Query){
+        Pageable pageable= PageRequest.of({{$Data.Name|camelCase|lowerFirst}}Query.getPage() - 1, {{$Data.Name|camelCase|lowerFirst}}Query.getLimit());
+        Specification<{{$Data.Name|upperFirst}}> specification=(Specification<{{$Data.Name|upperFirst}}>) (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            {{ range $Data.SearchColumn }}
+             if (!StringUtils.isEmpty({{$Data.Name|camelCase|lowerFirst}}Query.get{{.Prop|camelCase}}())) {
+                            predicates.add(criteriaBuilder.equal(root.get("name"),{{$Data.Name|camelCase|lowerFirst}}Query.get{{.Prop|camelCase}}()));
+              }
+            {{- end }}
+
+            return query.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
+
+        };
+        return {{$Data.Name|camelCase|lowerFirst}}Repository.findAll(specification,pageable);
+    }
+
+    public void create{{$Data.Name|upperFirst}}({{$Data.Name|upperFirst}} {{$Data.Name|camelCase|lowerFirst}}){
+        Optional<{{$Data.Name|upperFirst}}> {{$Data.Name|camelCase|lowerFirst}}1={{$Data.Name|camelCase|lowerFirst}}Repository.findByNameAndRpIdAndIsDel({{$Data.Name|camelCase|lowerFirst}}.getName(),{{$Data.Name|camelCase|lowerFirst}}.getRpId(),0);
+        if({{$Data.Name|camelCase|lowerFirst}}1.isPresent()){
+            throw new BaseException("该{{$Data.ButtonName}}已存在");
+        }
+        {{$Data.Name|camelCase|lowerFirst}}Repository.saveAndFlush({{$Data.Name|camelCase|lowerFirst}});
+    }
+
+    public void modify{{$Data.Name|upperFirst}}({{$Data.Name|upperFirst}} {{$Data.Name|camelCase|lowerFirst}}){
+        Optional<{{$Data.Name|upperFirst}}> {{$Data.Name|camelCase|lowerFirst}}1={{$Data.Name|camelCase|lowerFirst}}Repository.findById({{$Data.Name|camelCase|lowerFirst}}.getId());
+        {{$Data.Name|upperFirst}} old={{$Data.Name|camelCase|lowerFirst}}1.orElseThrow(()->new BaseException("该{{$Data.ButtonName}}不存在"));
+        MyBeanUtils.copyProperties({{$Data.Name|camelCase|lowerFirst}},old);
+        {{$Data.Name|camelCase|lowerFirst}}Repository.saveAndFlush(old);
+    }
+
+    public void delete{{$Data.Name|upperFirst}}(Long id){
+        Optional<{{$Data.Name|upperFirst}}> {{$Data.Name|camelCase|lowerFirst}}1={{$Data.Name|camelCase|lowerFirst}}Repository.findById(id);
+        {{$Data.Name|upperFirst}} old={{$Data.Name|camelCase|lowerFirst}}1.orElseThrow(()->new BaseException("该{{$Data.ButtonName}}不存在"));
+        old.setIsDel(1);
+        {{$Data.Name|camelCase|lowerFirst}}Repository.saveAndFlush(old);
+    }
+
+}

@@ -1,0 +1,29 @@
+hash: 85ada59f9feee96085b96c1ac1f44e30b53e389144e8e2cbf0102b2c7a846792
+updated: 2019-10-30T15:32:16.894096+08:00
+imports:
+- name: github.com/davecgh/go-spew
+  version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9
+- name: github.com/imdario/mergo
+  version: 3e95a51e0639b4cf372f2ccf74c86749d747fbdc
+- name: github.com/inconshreveable/mousetrap
+  version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
+- name: github.com/mailru/easyjson
+  version: 9dc3521db3580379d6cc493938ef9d2e9782ee7b
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
+- name: github.com/spf13/cobra
+  version: 7be4beda01ec05d0b93d80b3facd2b6f44080d94
+- name: github.com/spf13/pflag
+  version: 25f8b5b07aece3207895bf19f7ab517eb3b22a40
+- name: github.com/stretchr/testify
+  version: 69483b4bd14f5845b5a1e55bca19e954e827f1d0
+- name: golang.org/x/net
+  version: f11d7120b19ae21da5715f3e47621736de1b1da9
+  repo: https://github.com/golang/net.git
+- name: golang.org/x/text
+  version: 5a42fa2464759cbb7ee0af9de00b54d69f09a29c
+  repo: https://github.com/golang/text.git
+- name: gopkg.in/yaml.v2
+  version: a5b47d31c556af34a302ce5d659e6fea44d90de0
+  repo: https://github.com/go-yaml/yaml.git
+testImports: []
