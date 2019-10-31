@@ -1,4 +1,5 @@
 # LCli
+[![Go Report Card](https://goreportcard.com/badge/github.com/lwydyby/generator-cli)](https://goreportcard.com/report/github.com/lwydyby/generator-cli)
 
 spring boot + vue项目代码生成命令行工具
 
