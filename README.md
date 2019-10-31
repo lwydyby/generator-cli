@@ -37,7 +37,7 @@ Flags:
 ``` bash
 $ git clone git@github.com:lwydyby/generator-cli.git
 $ glide install
-$ make install
+$ go install
 ```
 
 
