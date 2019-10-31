@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
-
 )
 
 // LoadTemplates read the template manifest and load all templates info.
@@ -39,16 +38,15 @@ func loadTemplate(templateDirectory, templateID string, manifest *ManifestConfig
 	}
 
 	template := &Template{
-		Filename:         filepath.Base(templateFilePath),
-		FileDirectory:    filepath.Dir(templateConfiguration.FilePath),
-		FilePath:         templateFilePath,
-		Format:           manifest.Template.Format,
-		OutputFilename:   manifest.TemplateFiles[templateID].OutputFileNaming,
-		FileContent:      string(templateFileContent),
-		IsNeedGenerate:   true,
-		ID:               templateID,
+		Filename:       filepath.Base(templateFilePath),
+		FileDirectory:  filepath.Dir(templateConfiguration.FilePath),
+		FilePath:       templateFilePath,
+		Format:         manifest.Template.Format,
+		OutputFilename: manifest.TemplateFiles[templateID].OutputFileNaming,
+		FileContent:    string(templateFileContent),
+		IsNeedGenerate: true,
+		ID:             templateID,
 	}
-
 
 	return template, nil
 }

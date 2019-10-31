@@ -3,25 +3,22 @@ package templates
 import (
 	"encoding/json"
 	"errors"
-	"io/ioutil"
 	"gopkg.in/yaml.v2"
+	"io/ioutil"
 )
 
 // ManifestConfigurations holds the information of manifest file.
 type ManifestConfigurations struct {
-	Template        *templateConfigurations                `json:"template" yaml:"template"`
-	TemplateFiles   map[string]*templateFileConfigurations `json:"template_files" yaml:"template_files"`
-
+	Template      *templateConfigurations                `json:"template" yaml:"template"`
+	TemplateFiles map[string]*templateFileConfigurations `json:"template_files" yaml:"template_files"`
 }
 
 type templateConfigurations struct {
 	Format string `json:"format" yaml:"format"`
 }
 
-
-
 type templateFileConfigurations struct {
-	FilePath         string                   `json:"file_path" yaml:"file_path"`
+	FilePath         string `json:"file_path" yaml:"file_path"`
 	OutputFileNaming string `json:"output_file_naming" yaml:"output_file_naming"`
 }
 
@@ -81,8 +78,6 @@ func newDefaultManifest() *ManifestConfigurations {
 				FilePath:         "search.tmpl",
 				OutputFileNaming: "",
 			},
-
-
 		},
 	}
 }

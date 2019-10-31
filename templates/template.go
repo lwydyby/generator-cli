@@ -23,17 +23,16 @@ import (
 
 // A Template holds the information of template file.
 type Template struct {
-	Filename      string
-	FileDirectory string
-	FilePath      string
-	FileContent   string
+	Filename       string
+	FileDirectory  string
+	FilePath       string
+	FileContent    string
 	IsNeedGenerate bool
-	Format string
-	ID string // service, sub_service or types
+	Format         string
+	ID             string // service, sub_service or types
 
-	OutputFilename   string
-	OutputFilePath   string
-
+	OutputFilename string
+	OutputFilePath string
 }
 
 // UpdateOutputFilename updates the output filename according to namingStyle.

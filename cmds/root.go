@@ -97,7 +97,7 @@ For example:
 		fmt.Printf("Loaded data file %s \n\n", codeSpecFile)
 
 		if spec != nil {
-			for templateName:= range loadedTemplates{
+			for templateName := range loadedTemplates {
 				template := loadedTemplates[templateName]
 				codeGenerator := generator.New()
 				template.UpdateOutputFilePath(codeOutputDirectory)
